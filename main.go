@@ -1,1 +1,1 @@
-package quadratic_solver
+package quadraticSolver

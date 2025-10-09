@@ -1,4 +1,4 @@
-package quadratic_solver
+package quadraticSolver
 
 import "testing"
 
@@ -6,5 +6,19 @@ func TestSolveNoRoots(t *testing.T) {
 	roots := Solve(1, 0, 1)
 	if len(roots) != 0 {
 		t.Errorf("Ожидалось отсутствие корней, но получили %v корней", roots)
+	}
+}
+
+func TestSolveTwoRoots(t *testing.T) {
+	roots := Solve(1, 0, -1)
+	expectedResult := []float64{1, -1}
+
+	if len(roots) != 2 {
+		t.Errorf("Ожидалось 2 корня но получили %v корней", roots)
+		return
+	}
+
+	if roots[0] != expectedResult[0] || roots[1] != expectedResult[1] {
+		t.Errorf("Ожидаемый результат: %v, но получили: %v", expectedResult, roots)
 	}
 }
