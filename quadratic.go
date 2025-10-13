@@ -1,8 +1,12 @@
-package quadraticSolver
+package main
 
 import "math"
 
 func Solve(a, b, c float64) []float64 {
+	if a == 0 {
+		panic("Коэффициент 'a' не может быть равен 0")
+	}
+
 	discriminant := b*b - 4*a*c
 
 	if discriminant < 0 {

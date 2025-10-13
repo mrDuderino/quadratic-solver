@@ -1,4 +1,4 @@
-package quadraticSolver
+package main
 
 import "testing"
 
@@ -31,4 +31,14 @@ func TestSolveOneRoot(t *testing.T) {
 	if roots[0] != expectedResult[0] {
 		t.Errorf("Ожидался один корень %v, а получили %v корней", expectedResult, roots)
 	}
+}
+
+func TestSolveZeroCoeffA(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("Ожидаемая паника для a = 0")
+		}
+	}()
+
+	Solve(0, 2, 1)
 }

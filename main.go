@@ -1,1 +1,5 @@
-package quadraticSolver
+package main
+
+func main() {
+
+}
