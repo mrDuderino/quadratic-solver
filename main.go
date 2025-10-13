@@ -8,8 +8,8 @@ import (
 
 func main() {
 	testCases := []struct {
-		a, b, c float64
-		desc    string
+		a, b, c     float64
+		description string
 	}{
 		{1, 0, 1, "x^2 + 1 = 0 (нет корней)"},
 		{1, 0, -1, "x^2 - 1 = 0 (два корня)"},
@@ -18,7 +18,7 @@ func main() {
 	}
 
 	for _, tc := range testCases {
-		fmt.Printf("\nУравнение: %s\n", tc.desc)
+		fmt.Printf("\nУравнение: %s\n", tc.description)
 		roots, err := solver.Solve(tc.a, tc.b, tc.c)
 		if err != nil {
 			fmt.Printf("Ошибка: %v\n", err)
