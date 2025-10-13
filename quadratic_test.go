@@ -18,7 +18,17 @@ func TestSolveTwoRoots(t *testing.T) {
 		return
 	}
 
-	if roots[0] != expectedResult[0] || roots[1] != expectedResult[1] {
+	if !((roots[0] == expectedResult[0] && roots[1] == expectedResult[1]) ||
+		(roots[0] == expectedResult[1] && roots[1] == expectedResult[0])) {
 		t.Errorf("Ожидаемый результат: %v, но получили: %v", expectedResult, roots)
+	}
+}
+
+func TestSolveOneRoot(t *testing.T) {
+	roots := Solve(1, 2, 1)
+	expectedResult := []float64{-1}
+
+	if roots[0] != expectedResult[0] {
+		t.Errorf("Ожидался один корень %v, а получили %v корней", expectedResult, roots)
 	}
 }
