@@ -1,6 +1,9 @@
-package main
+package solver
 
-import "testing"
+import (
+	"math"
+	"testing"
+)
 
 func TestSolveNoRoots(t *testing.T) {
 	roots := Solve(1, 0, 1)
@@ -26,10 +29,15 @@ func TestSolveTwoRoots(t *testing.T) {
 
 func TestSolveOneRoot(t *testing.T) {
 	roots := Solve(1, 2, 1)
-	expectedResult := []float64{-1}
 
-	if roots[0] != expectedResult[0] {
-		t.Errorf("Ожидался один корень %v, а получили %v корней", expectedResult, roots)
+	if len(roots) != 1 {
+		t.Errorf("Ожидался 1 корень, но получили %v корней", roots)
+		return
+	}
+
+	expectedResult := []float64{-1}
+	if math.Abs(roots[0]-expectedResult[0]) > 1e-10 {
+		t.Errorf("Ожидался корень %v, но получили: %v", expectedResult, roots)
 	}
 }
 
@@ -41,4 +49,12 @@ func TestSolveZeroCoeffA(t *testing.T) {
 	}()
 
 	Solve(0, 2, 1)
+}
+
+func TestSolveDiscriminantIsCloseToZero(t *testing.T) {
+	roots := Solve(1, 2, 1+1e-15)
+
+	if len(roots) != 1 {
+		t.Errorf("Ожидался 1 корень для почти нулевого дискриминанта, но получили %v корней", roots)
+	}
 }
